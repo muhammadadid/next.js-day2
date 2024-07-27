@@ -1,24 +1,15 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { FaEllipsisV } from "react-icons/fa";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import FormPromo from "./FormPromo";
 
-const ProfileCard = ({ user, getUser }) => {
-  const [role, setRole] = useState(user.role);
-  const [loading, setLoading] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const Promo = () => {
+  const [promo, setPromo] = useState([]);
+  const scrollRef = useRef(null);
 
-  const handleRoleChange = (event) => {
-    setRole(event.target.value);
-  };
-
-  const toggleRole = async () => {
-    setLoading(true);
+  const getPromo = async () => {
     try {
-      const response = await axios.post(
-        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-user-role/${user.id}`,
-        { role },
+      const response = await axios.get(
+        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/promos",
         {
           headers: {
             "Content-Type": "application/json",
@@ -28,103 +19,74 @@ const ProfileCard = ({ user, getUser }) => {
           },
         }
       );
-      if(response.status === 200) {
-        toast.success("Role updated successfully");
-        setRole(response.data.role);
-        getUser();
-        setIsModalOpen(false);
-      } else {
-        toast.error("Failed to update role");
-      }
+      setPromo(response.data.data);
     } catch (error) {
-      console.error("Error updating role:", error);
-      toast.error("Failed to update role");
-    } setTimeout(() => {
-      getUser();
-    },2000)
+      console.error(error.response);
+    }
+  };
+
+  useEffect(() => {
+    getPromo();
+  }, []);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -300 : 300, // Adjust scroll amount as needed
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
-    <div className="flex-1 w-full mx-2 mb-4">
-      <div className="overflow-hidden shadow-lg rounded-7xl w-60 bg-[#FFFFB3]">
-        <div className="relative">
-          <div className="flex items-center justify-center h-32 bg-gray-100">
+    <div className="flex-1 flex flex-col items-start justify-start gap-[100px] max-w-full mq800:gap-[50px] mq450:gap-[25px]">
+      <div className="flex flex-col items-start self-stretch justify-start max-w-full">
+        <div className="self-stretch flex flex-row items-end justify-between max-w-full gap-[20px] mq800:flex-wrap">
+          <div className="w-[172px] flex flex-row items-start justify-start gap-[40px]">
             <img
-              src={user?.profilePictureUrl || "/images/deaflut.jpg"}
-              alt="Profile Picture"
-              className={"object-cover w-32 h-32 rounded-full"}
+              className="self-stretch w-[66px] rounded-xl max-h-full overflow-hidden shrink-0 object-contain min-h-[60px]"
+              loading="lazy"
+              alt=""
+              onClick={() => scroll("left")}
+              src="/images/kiri.png"
             />
-            <button
-              className="absolute p-2 text-black cursor-pointer rounded-xl top-4 right-4 hover:text-slate-400"
-              onClick={() => setIsModalOpen(true)}
-            >
-              <FaEllipsisV />
-            </button>
+            <img
+              className="self-stretch w-[66px] rounded-xl max-h-full overflow-hidden shrink-0 object-contain min-h-[60px]"
+              loading="lazy"
+              alt=""
+              onClick={() => scroll("right")}
+              src="/images/kanan.png"
+            />
           </div>
-        </div>
-        <div className="p-4">
-          <h2 className="font-semibold text-lgi ">{user?.name}</h2>
-          <p className="text-sm text-gray-600">
-            <span className="flex items-center text-slate-800">
-              <svg
-                className="w-5 h-5 mr-1 text-slate-600"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" />
-              </svg>
-              {user?.email}
-            </span>
-          </p>
-          <p className="text-sm text-gray-600">
-            <span className="flex items-center text-slate-800">
-              <svg
-                className="w-5 h-5 mr-1 text-slate-600"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M16.434.001a.826.826 0 00-.164.008l-3.423.543a2.635 2.635 0 01-2.189 3.01 2.629 2.629 0 01-3.01-2.185l-3.417.538a.818.818 0 00-.677.931l3.24 20.467a.818.818 0 00.931.677l3.423-.543a2.635 2.635 0 012.189-3.01 2.629 2.629 0 013.01 2.185l3.422-.543a.818.818 0 00.677-.93L17.2.685a.816.816 0 00-.767-.685zm-3.22 6.534c.066 0 .128.005.185.017.423.09.975.6 1.315.955.178.187.192.519.048.73l-1.228 1.795a.89.89 0 01-.437.283c-.504.125-1.248-.95-1.771 1.507-.524 2.458.59 1.776 1.003 2.098a.828.828 0 01.283.437l.394 2.14a.613.613 0 01-.341.649c-.456.182-1.167.427-1.589.336-.907-.192-2.342-2.4-1.57-6.044.725-3.415 2.71-4.89 3.708-4.903Z" />
-              </svg>
-              {user?.phoneNumber}
-            </span>
-          </p>
-          <button className={`w-full py-2 mt-4 text-sm font-semibold rounded-81xl text-white ${role === "user" ? "bg-yellowgreen-100" : "bg-darkblue"}`}>
-            {user?.role}
-          </button>
+          <div className="w-[460px] flex flex-col items-end justify-end gap-[29px] max-w-full">
+            <div className="flex flex-row items-start self-stretch justify-end max-w-full">
+              <div className="w-[369px] flex flex-col items-end justify-end gap-[20px] max-w-full">
+                <h1 className="relative m-0 font-normal text-inherit font-inherit mq800:text-32xl mq450:text-19xl">
+                  Special Offer
+                </h1>
+                <div className="flex flex-row items-start self-stretch justify-end">
+                  <div className="h-[3px] w-[244px] relative box-border border-t-[3px] border-solid border-coral-100"></div>
+                </div>
+              </div>
+            </div>
+            <div className="relative text-5xl font-rubik text-slategray mq450:text-lgi">
+              Check out our special offer and discounts
+            </div>
+          </div>
         </div>
       </div>
-
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50 ">
-          <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg mq450:w-1/2">
-            <h2 className="mb-4 text-lg font-medium">Change Role</h2>
-            <select
-              value={role}
-              onChange={handleRoleChange}
-              className="w-full px-3 py-2 mt-1 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
-            </select>
-            <button
-              onClick={toggleRole}
-              className="w-full py-2 mt-4 text-sm font-semibold text-white bg-blue-500 rounded-md"
-              disabled={loading}
-            >
-              {loading ? "Updating..." : "Change Role"}
-            </button>
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="w-full py-2 mt-4 text-sm font-semibold text-white bg-red-500 rounded-md"
-            >
-              Close
-            </button>
-          </div>
+      <div className="relative flex items-center w-full">
+        <div
+          ref={scrollRef}
+          className="flex flex-row items-start justify-start py-4 space-x-4 overflow-x-scroll no-scrollbar whitespace-nowrap"
+        >
+          {promo.map((promoItem) => (
+            <FormPromo key={promoItem.id} promo={promoItem} />
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
 };
 
-export default ProfileCard;
-
+export default Promo;
