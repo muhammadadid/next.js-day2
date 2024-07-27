@@ -43,7 +43,7 @@ const CardPromo = ({ item, getPromo }) => {
  
 
   return (
-    <div className="overflow-hidden bg-white rounded shadow-lg w-96 mq800:w-full">
+    <div className="overflow-hidden bg-white shadow-lg rounded-xl w-96 mq800:w-full">
     <div className="relative">
       <img className="w-full transition-transform duration-300 transform h-52 hover:scale-110" src={item?.imageUrl} alt={item?.title} />
       <div className="absolute flex gap-2 space-x-2 top-2 right-2">

@@ -46,7 +46,7 @@ const ProfileCard = ({ user, getUser }) => {
 
   return (
     <div className="flex-1 w-full mx-2 mb-4">
-      <div className="overflow-hidden shadow-lg rounded-7xl w-60 bg-[#FFFFB3]">
+      <div className="overflow-hidden shadow-lg rounded-7xl w-60 bg-[#9EB23B]">
         <div className="relative">
           <div className="flex items-center justify-center h-32 bg-gray-100">
             <img
@@ -88,7 +88,7 @@ const ProfileCard = ({ user, getUser }) => {
               {user?.phoneNumber}
             </span>
           </p>
-          <button className={`w-full py-2 mt-4 text-sm font-semibold rounded-81xl text-white ${role === "user" ? "bg-yellowgreen-100" : "bg-darkblue"}`}>
+          <button className={`w-full py-2 mt-4 text-sm font-semibold rounded-81xl text-white ${role === "user" ? "bg-[#8C3333]" : "bg-[#337357]"}`}>
             {user?.role}
           </button>
         </div>

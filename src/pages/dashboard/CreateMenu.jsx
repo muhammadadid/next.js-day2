@@ -97,7 +97,7 @@ const CreateMenu = () => {
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full bg-lightyellow">
       <div className="w-full h-full relative overflow-hidden flex flex-row items-start justify-start pt-0 pb-[29.4px] pr-[18px] pl-0 box-border gap-[12px]  text-left text-xl text-indianred font-body-2-regular mq800:pl-2 mq800:pr-6 mq800:box-border mq450:h-auto bg-white">
         <SideBar />
         <div className="flex flex-col items-start justify-start flex-1 ">

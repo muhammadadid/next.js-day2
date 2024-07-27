@@ -120,7 +120,7 @@ const Category = () => {
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full bg-lightyellow">
       <div className="w-full h-full relative overflow-hidden flex flex-row items-start justify-start pb-[29.4px] pr-[18px] box-border gap-[12px] text-left text-xl text-indianred mq450:h-auto">
         <SideBar />
         <div className="flex flex-col justify-start gap-[32px] w-full pt-10 h-full mb-28">
@@ -166,7 +166,7 @@ const Category = () => {
             totalRecords={filteredCategories.length}
             rowsPerPageOptions={[6]}
             onPageChange={onPageChange}
-            className="paginator"
+            className="paginator bg-lightyellow"
           />
           {isModalOpen && (
             <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">

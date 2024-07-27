@@ -45,6 +45,7 @@ module.exports = {
         dark: "#222",
         darkgoldenrod: "#b87514",
         burlywood: "#ecbc76",
+        lightyellow: "#FCF9C6"
       },
       spacing: {},
       fontFamily: {

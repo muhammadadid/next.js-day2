@@ -14,7 +14,7 @@ const Bar = () => {
   }, [token, dispatch]);
 
   return (
-    <div className="box-border flex flex-row items-start justify-end flex-shrink-0 max-w-full px-8 py-0 pt-4 pb-4 bg-maroon rounded-xl">
+    <div className="box-border flex flex-row items-start justify-end flex-shrink-0 max-w-full px-8 py-0 pt-4 pb-4 bg-[#9EB23B] rounded-xl">
       <div className="flex-1 flex flex-row items-end justify-between py-0 pr-0 pl-px box-border max-w-full gap-[20px] mq375:flex-wrap">
         <div className="flex flex-col items-start justify-start flex-shrink-0">
           <b className="relative font-semibold text-whitesmoke inline-block min-w-[121px] mq450:text-base">
