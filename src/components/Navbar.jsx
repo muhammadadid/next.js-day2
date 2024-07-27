@@ -216,7 +216,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="box-border fixed top-0 left-0 flex items-center justify-between w-full max-w-full gap-20 p-2 text-xl bg-white bg-opacity-40 z-1 font-rubik backdrop-blur-lg">
+    <header className="box-border fixed top-0 left-0 flex items-center justify-between w-full max-w-full gap-20 p-2 text-xl bg-opacity-40 z-1 font-rubik ">
       <div className="flex items-center justify-center">
         <img
           className="relative w-12 h-12"
@@ -392,7 +392,7 @@ const Navbar = () => {
     </div>
   ) : (
     <>
-      <button className="text-lg bg-transparent hover:text-gray-900">
+      <button className="text-lg bg-transparent bg-blue-700 bg-opacity-25 hover:text-gray-900">
         <a href="/Login" className="text-white no-underline text-inherit">
           Login
         </a>
