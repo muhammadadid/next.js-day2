@@ -151,7 +151,6 @@
 
 // export default Navbar;
 
-
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
@@ -234,11 +233,14 @@ const Navbar = () => {
         <a href="/Promo" className="relative no-underline text-inherit">
           Promo
         </a>
-        <a href="/Activity" className="relative no-underline text-inherit">
+        <a href="/Actifity" className="relative no-underline text-inherit">
           Activity
         </a>
         {isLoggedIn && user?.role === "admin" && (
-          <a href="/dashboard/ListUser" className="relative no-underline text-inherit">
+          <a
+            href="/dashboard/ListUser"
+            className="relative no-underline text-inherit"
+          >
             Dashboard
           </a>
         )}
@@ -332,84 +334,99 @@ const Navbar = () => {
       </button>
       {/* Mobile Menu */}
       <nav
-        className={`absolute top-full right-0 w-full bg-white rounded-lg shadow-lg max-w-[250px] ${isOpen ? 'block' : 'hidden'} lg:hidden`}
+        className={`absolute top-full right-0 w-full bg-white rounded-lg shadow-lg max-w-[250px] ${
+          isOpen ? "block" : "hidden"
+        } lg:hidden`}
       >
         <ul className="flex flex-col">
-  <li>
-    <a href="/" className="block px-4 py-2 text-lg text-black no-underline hover:bg-gray-200">
-      Home
-    </a>
-  </li>
-  <li>
-    <a href="/Promo" className="block px-4 py-2 text-lg text-black no-underline hover:bg-gray-200">
-      Promo
-    </a>
-  </li>
-  <li>
-    <a href="/Activity" className="block px-4 py-2 text-lg text-black no-underline hover:bg-gray-200">
-      Activity
-    </a>
-  </li>
-  {isLoggedIn && user?.role === "admin" && (
-    <li>
-      <a href="/dashboard/ListUser" className="block px-4 py-2 text-lg text-black no-underline hover:bg-gray-200">
-        Dashboard
-      </a>
-    </li>
-  )}
-  {isLoggedIn ? (
-    <div className="relative">
-      <p
-        className="flex items-center cursor-pointer"
-        onClick={handleProfileClick}
-        aria-expanded={showDropdown ? "true" : "false"}
-        aria-haspopup="true"
-      >
-        <img
-          className="w-20 h-20 rounded-full "
-          src={user?.profilePictureUrl}
-          alt="Profile"
-          width={40}
-          height={40}
-        />
-      </p>
-      {showDropdown && (
-        <div className="absolute right-0 mt-2 bg-white rounded-lg shadow-lg">
-          <a
-            href="/Profile"
-            className="block px-4 py-2 text-lg text-black no-underline rounded-lg hover:bg-gray-200"
-          >
-            Profile
-          </a>
-          <button
-            onClick={handleLogout}
-            className="block w-full px-4 py-2 text-sm text-left text-white bg-red-700 rounded-lg hover:bg-red-800"
-          >
-            Logout
-          </button>
-        </div>
-      )}
-    </div>
-  ) : (
-    <>
-      <button className="text-lg bg-transparent bg-blue-700 bg-opacity-25 hover:text-gray-900">
-        <a href="/Login" className="text-white no-underline text-inherit">
-          Login
-        </a>
-      </button>
-      <button className="px-8 py-2 rounded-md bg-greenyellow hover:bg-yellowgreen-200">
-        <a href="/Register" className="text-black no-underline">
-          Sign up
-        </a>
-      </button>
-    </>
-  )}
-</ul>
-
+          <li>
+            <a
+              href="/"
+              className="block px-4 py-2 text-lg text-black no-underline hover:bg-gray-200"
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="/Promo"
+              className="block px-4 py-2 text-lg text-black no-underline hover:bg-gray-200"
+            >
+              Promo
+            </a>
+          </li>
+          <li>
+            <a
+              href="/Activity"
+              className="block px-4 py-2 text-lg text-black no-underline hover:bg-gray-200"
+            >
+              Activity
+            </a>
+          </li>
+          {isLoggedIn && user?.role === "admin" && (
+            <li>
+              <a
+                href="/dashboard/ListUser"
+                className="block px-4 py-2 text-lg text-black no-underline hover:bg-gray-200"
+              >
+                Dashboard
+              </a>
+            </li>
+          )}
+          {isLoggedIn ? (
+            <div className="relative">
+              <p
+                className="flex items-center cursor-pointer"
+                onClick={handleProfileClick}
+                aria-expanded={showDropdown ? "true" : "false"}
+                aria-haspopup="true"
+              >
+                <img
+                  className="w-20 h-20 rounded-full "
+                  src={user?.profilePictureUrl}
+                  alt="Profile"
+                  width={40}
+                  height={40}
+                />
+              </p>
+              {showDropdown && (
+                <div className="absolute right-0 mt-2 bg-white rounded-lg shadow-lg">
+                  <a
+                    href="/Profile"
+                    className="block px-4 py-2 text-lg text-black no-underline rounded-lg hover:bg-gray-200"
+                  >
+                    Profile
+                  </a>
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full px-4 py-2 text-sm text-left text-white bg-red-700 rounded-lg hover:bg-red-800"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              <button className="text-lg bg-transparent bg-blue-700 bg-opacity-25 hover:text-gray-900">
+                <a
+                  href="/Login"
+                  className="text-white no-underline text-inherit"
+                >
+                  Login
+                </a>
+              </button>
+              <button className="px-8 py-2 rounded-md bg-greenyellow hover:bg-yellowgreen-200">
+                <a href="/Register" className="text-black no-underline">
+                  Sign up
+                </a>
+              </button>
+            </>
+          )}
+        </ul>
       </nav>
     </header>
   );
 };
 
 export default Navbar;
-
