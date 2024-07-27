@@ -127,4 +127,3 @@ const ProfileCard = ({ user, getUser }) => {
 };
 
 export default ProfileCard;
-

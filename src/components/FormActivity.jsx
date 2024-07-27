@@ -25,4 +25,5 @@ const FromActivity = ({item}) => {
   };
   
   export default FromActivity;
+
   
