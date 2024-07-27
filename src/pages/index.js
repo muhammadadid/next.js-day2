@@ -26,6 +26,11 @@ export default function PostDetail({ postDetail }) {
       >
         Next
       </button>
+      <button
+        className="p-2 bg-red-800 rounded"
+      >
+        <a href={`/Promo`}>Prev</a>
+      </button>
     </div>
   );
 }
