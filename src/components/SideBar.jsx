@@ -27,7 +27,7 @@ const SideBar = () => {
               className="h-6 w-6 relative overflow-hidden shrink-0 min-h-[24px]"
               loading="lazy"
               alt=""
-              src="/images/userprofile.png"
+              src="/images/user.png"
             ></img>
 
             <a 
@@ -99,7 +99,7 @@ const SideBar = () => {
               className="h-6 w-6 relative overflow-hidden shrink-0 min-h-[24px]"
               loading="lazy"
               alt=""
-              src="/images/home.png"
+              src="/images/rumah.png"
             ></img>
 
             <div className="relative tracking-[0.5px] leading-[150%] inline-block min-w-[77px]">
