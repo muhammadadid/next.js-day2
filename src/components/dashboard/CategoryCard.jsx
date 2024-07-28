@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import moment from "moment";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 

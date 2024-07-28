@@ -36,10 +36,10 @@ const Login = () => {
   
 
   return (
-    <div className="w-full relative bg-gray-100 overflow-hidden flex flex-col items-end justify-start py-0 pr-[461px] pl-0 box-border leading-[normal] tracking-[normal] text-left text-base text-black font-poppins mq450:pr-5 mq450:box-border mq750:pr-[230px] mq750:box-border">
+    <div className="w-full relative bg-gray-100 overflow-hidden flex flex-col items-end justify-start py-0 pr-[451px] pl-0 box-border leading-[normal] tracking-[normal] text-left text-xl text-black font-poppins mq450:pr-5 mq450:box-border mq900:pr-[225px] mq900:box-border">
       <section className="self-stretch h-[900px] flex flex-row items-start justify-start max-w-full text-left text-xl text-darkblue font-poppins">
-        <div className="self-stretch w-[731px] bg-khaki-100 flex flex-row items-start justify-start py-[31px] px-[42px] box-border relative max-w-full">
-          <div className="h-[900px] w-[731px] relative bg-khaki-100 hidden max-w-full z-[0]"></div>
+        <div className="self-stretch w-[732px] bg-burlywood flex flex-row items-start justify-start py-[31px] px-[42px] box-border relative max-w-full">
+          <div className="h-[1141px] w-[731px] relative bg-burlywood hidden max-w-full z-[0]"></div>
           <Image
             className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] max-w-full overflow-hidden max-h-full object-cover z-[1]"
             width={731}
@@ -55,8 +55,8 @@ const Login = () => {
           ></Image>
         </div>
       </section>
-      <form className="w-[539px] h-[741px] relative z-10" onSubmit={handleSubmit}>
-        <div className=" w-[539px] shadow-[0px_4px_35px_rgba(0,_0,_0,_0.08)] rounded-21xl bg-white flex flex-col items-start justify-start pt-[52px] pb-[51px] pr-[34px] pl-11 box-border gap-[32.5px] max-w-full z-[2] mt-[-821px] mq675:gap-[16px] mq675:pl-[22px] mq675:box-border mq750:pb-[33px] mq750:box-border">
+      <form className="w-[539px] h-[741px] relative z-10 mq450:w-full" onSubmit={handleSubmit}>
+        <div className=" w-[539px] shadow-[0px_4px_35px_rgba(0,_0,_0,_0.08)] rounded-21xl bg-white flex flex-col items-start justify-start pt-[52px] pb-[51px] pr-[34px] pl-11 box-border gap-[32.5px] max-w-full z-[2] mt-[-821px] mq450:w-full">
           <div className="w-[539px] h-[741px] relative shadow-[0px_4px_35px_rgba(0,_0,_0,_0.08)] rounded-21xl bg-white hidden max-w-full"></div>
           <div className="self-stretch flex flex-row items-start justify-between gap-[20px] text-xl mq450:flex-wrap">
             <div className="w-[196px] flex flex-col items-start justify-start pt-[3px] px-0 pb-0 box-border">
