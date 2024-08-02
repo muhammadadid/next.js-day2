@@ -9,7 +9,7 @@ const withAuth = (WrappedComponent) => {
 
     useEffect(() => {
       if (!token) {
-        router.push('/Login'); // Redirect jika tidak ada token
+        router.push('/Login'); 
       }
     }, [token, router]);
 

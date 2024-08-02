@@ -151,33 +151,40 @@
 
 // export default Navbar;
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { setToken, fetchUserDetails } from "../Redux/slice/authSlice";
+import { setToken } from "../Redux/slice/authSlice";
 import { toast } from "react-toastify";
+import { fetchUserDetails } from "@/Redux/slice/userSlice";
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [hasFetchedUser, setHasFetchedUser] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
-  const { user, token } = useSelector((state) => state.auth);
+  const { user, token } = useSelector((state) => state.user);
 
   const handleLogout = async () => {
     try {
+      const storedToken = localStorage.getItem("token");
+      if (!storedToken) {
+        throw new Error("No token found");
+      }
       await axios.get(
         "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/logout",
         {
           headers: {
             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${storedToken}`,
           },
         }
       );
       localStorage.removeItem("token");
+      dispatch(setToken(null)); // Clear the token in Redux state
       setIsLoggedIn(false);
       router.push("/");
       toast.success("Logged out successfully");
@@ -187,23 +194,24 @@ const Navbar = () => {
     }
   };
 
-  useEffect(() => {
+  const fetchUser = useCallback(() => {
     const storedToken = localStorage.getItem("token");
-    if (storedToken && !token) {
+    if (storedToken && (!token || token !== storedToken)) {
       dispatch(setToken(storedToken));
-      dispatch(fetchUserDetails(storedToken));
-    } else if (token && !user) {
-      dispatch(fetchUserDetails(token));
     }
-  }, [dispatch, token, user]);
+    if (storedToken && !hasFetchedUser) {
+      dispatch(fetchUserDetails(storedToken));
+      setHasFetchedUser(true);
+    }
+  }, [dispatch, token, hasFetchedUser]);
+
+  useEffect(() => {
+    fetchUser();
+  }, [fetchUser]);
 
   useEffect(() => {
     const accessToken = localStorage.getItem("token");
-    if (accessToken) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
+    setIsLoggedIn(Boolean(accessToken));
   }, []);
 
   const toggleMenu = () => {
@@ -213,7 +221,6 @@ const Navbar = () => {
   const handleProfileClick = () => {
     setShowDropdown(!showDropdown);
   };
-
   return (
     <header className="box-border fixed top-0 left-0 flex items-center justify-between w-full max-w-full gap-20 p-2 text-xl bg-opacity-40 z-1 font-rubik ">
       <div className="flex items-center justify-center">
@@ -297,13 +304,13 @@ const Navbar = () => {
       </div>
       {/* Hamburger Menu Button */}
       <button
-        className="block mq450:flex mq1125:hidden mq1350:hidden mq1750:hidden"
+        className="block bg-opacity-0 mq450:flex mq1125:hidden mq1350:hidden mq1750:hidden mq1920:hidden"
         onClick={toggleMenu}
       >
         {isOpen ? (
           <svg
-            className="w-6 h-6 text-black"
-            fill="none"
+            className="w-6 h-6 text-black bg-opacity-0"
+            fill="bg-opacity-0"
             stroke="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
@@ -332,13 +339,14 @@ const Navbar = () => {
           </svg>
         )}
       </button>
-      {/* Mobile Menu */}
+
+      {/* Dropdown Menu */}
       <nav
-        className={`absolute top-full right-0 w-full bg-white rounded-lg shadow-lg max-w-[250px] ${
+        className={`absolute top-full right-0 w-full bg-white rounded-lg shadow-lg max-w-full ${
           isOpen ? "block" : "hidden"
-        } lg:hidden`}
+        } `}
       >
-        <ul className="flex flex-col">
+        <ul className="flex flex-col items-center justify-center no-decoration ">
           <li>
             <a
               href="/"
@@ -357,7 +365,7 @@ const Navbar = () => {
           </li>
           <li>
             <a
-              href="/Activity"
+              href="/Actifity"
               className="block px-4 py-2 text-lg text-black no-underline hover:bg-gray-200"
             >
               Activity
@@ -408,19 +416,21 @@ const Navbar = () => {
             </div>
           ) : (
             <>
-              <button className="text-lg bg-transparent bg-blue-700 bg-opacity-25 hover:text-gray-900">
-                <a
-                  href="/Login"
-                  className="text-white no-underline text-inherit"
-                >
-                  Login
-                </a>
-              </button>
-              <button className="px-8 py-2 rounded-md bg-greenyellow hover:bg-yellowgreen-200">
-                <a href="/Register" className="text-black no-underline">
-                  Sign up
-                </a>
-              </button>
+              <div className="flex items-center justify-start gap-8">
+                <button className="p-2 text-lg bg-transparent border-b-2 border-l-2 rounded-2xl hover:text-gray-900">
+                  <a
+                    href="/Login"
+                    className="text-black no-underline text-inherit"
+                  >
+                    Login
+                  </a>
+                </button>
+                <button className="px-8 py-2 rounded-md bg-greenyellow hover:bg-yellowgreen-200">
+                  <a href="/Register" className="text-black no-underline">
+                    Sign up
+                  </a>
+                </button>
+              </div>
             </>
           )}
         </ul>

@@ -20,13 +20,13 @@ const FormPromo = ({ promo }) => {
         src={promo?.imageUrl}
       />
 
-      <div className="h-80 self-stretch rounded-t-none rounded-b-7xl  flex flex-col items-start justify-start py-10 pr-0 pl-6 box-border gap-[22px] w-full bg-darkslateblue ">
+      <div className="h-64 self-stretch rounded-t-none rounded-b-7xl  flex flex-col items-start justify-start py-10 pr-0 pl-6 box-border gap-[22px] w-full bg-darkslateblue ">
         <div className="w-[449px] flex flex-col items-start justify-start gap-[8px] max-w-[109%] shrink-0 font-mulish">
           <h3 className="relative self-stretch m-0 font-normal text-white text-19xl mq450:text-3xl">
             {promo?.title}
           </h3>
         </div>
-        <div className="w-[389.3px] relative text-lg  inline-block max-w-full text-slate-500 ">
+        <div className="w-[389.3px] relative text-lg  inline-block max-w-full text-slate-500 overflow-hidden whitespace-nowrap text-overflow ">
           {promo?.description}
         </div>
         <div className="w-[389.3px] flex flex-row items-center justify-between max-w-full gap-[20px] text-xl mq450:flex-wrap">
@@ -34,7 +34,7 @@ const FormPromo = ({ promo }) => {
             <div className="relative inline-block min-w-[49px] mq450:text-base text-white">
             Savings
             </div>
-            <div className="relative text-13xl text-yellowgreen-100 inline-block min-w-[105px] whitespace-nowrap mq800:text-13xl mq450:text-5xl ">
+            <div className="relative text-9xl text-yellowgreen-100 inline-block min-w-[105px] whitespace-nowrap mq800:text-13xl mq450:text-5xl ">
               {formatToIDR(promo?.promo_discount_price)}
             </div>
           </div>

@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { setToken } from "../Redux/slice/authSlice";
+
 
 
 const Register = () => {

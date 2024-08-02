@@ -1,25 +1,28 @@
-import Navbar from "@/components/Navbar";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserDetails, setToken } from "../Redux/slice/authSlice";
+import { fetchUserDetails, clearUser } from "../Redux/slice/userSlice";
+import { setToken } from "../Redux/slice/authSlice";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { useRouter } from "next/router";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-const Profile = ({ item }) => {
+const Profile = () => {
   const dispatch = useDispatch();
-  const { user, token } = useSelector((state) => state.auth);
-  const router = useRouter();
+  const { user, status, error } = useSelector((state) => state.user);
+  const { token } = useSelector((state) => state.auth);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [file, setFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState(item?.imageUrl);
+  const [imageUrl, setImageUrl] = useState(user?.profilePictureUrl || '');
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phoneNumber: "",
+    name: user?.name || '',
+    email: user?.email || '',
+    phoneNumber: user?.phoneNumber || '',
   });
 
-  const handleUpload = async () => {
+  const handleUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return imageUrl;
     const uploadData = new FormData();
     uploadData.append("image", file);
 
@@ -39,10 +42,12 @@ const Profile = ({ item }) => {
       );
       setImageUrl(res.data.url);
       toast.success("Image uploaded successfully!");
-      console.log(res.data.url);
+      console.log('image url', res.data.url);
+      return res.data.url;
     } catch (error) {
       toast.error("Failed to upload image!");
       console.log(error);
+      throw error;
     }
   };
 
@@ -60,46 +65,31 @@ const Profile = ({ item }) => {
       name: formData.name,
       email: formData.email,
       phoneNumber: formData.phoneNumber,
-      profilePictureUrl: imageUrl,
+      profilePictureUrl: newImageUrl,
     };
     try {
-      const response = await axios.post(
+      await axios.post(
         `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-profile`,
         payload,
         {
           headers: {
             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-            Authorization: `Bearer ${(token)}`,
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-      console.log(response.data);
       toast.success('Profile updated successfully');
       setIsModalOpen(false);
-      
+      dispatch(fetchUserDetails(token)); // Ensure user details are refreshed
     } catch (error) {
       console.error(error.response);
       toast.error('Failed to update profile');
-    } 
-    router.reload();
-  };
-
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    }
   };
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const openModal = () => {
-    setFormData({
-      name: user.name,
-      email: user.email,
-      phoneNumber: user.phoneNumber,
-    });
-    setImageUrl(user.profilePictureUrl);
-    setIsModalOpen(true);
   };
 
   useEffect(() => {
@@ -116,10 +106,11 @@ const Profile = ({ item }) => {
     return <p>You are not logged in</p>;
   }
 
+
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col items-center max-w-lg p-6 mx-auto shadow-lg bg-khaki-400 rounded-3xl mt-28">
+      <div className="flex flex-col items-center max-w-lg p-6 mx-auto mb-40 shadow-lg bg-khaki-400 rounded-3xl mt-28">
         <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
           <div className="flex items-center justify-center space-x-4">
             <img
@@ -133,7 +124,7 @@ const Profile = ({ item }) => {
           </div>
           <div className="flex items-center justify-center mr-4">
             <button 
-              onClick={openModal}
+              onClick={() => setIsModalOpen(true)}
               className="px-4 py-2 text-white bg-blue-500 rounded-lg">
               Edit
             </button>
@@ -210,11 +201,9 @@ const Profile = ({ item }) => {
                 <input
                   type="file"
                   className="block px-4 py-2 mt-1 border rounded-md shadow-sm w-60 md:w-60 focus:ring focus:ring-opacity-50"
-                  onChange={handleFileChange}
+                  onChange={handleUpload}
                 />
-                <button 
-                  onClick={handleUpload} 
-                  className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-lg">Upload</button>
+                
               </div>
               <div>
                 <label className="block text-gray-700">
@@ -271,8 +260,11 @@ const Profile = ({ item }) => {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 };
 
 export default Profile;
+
+

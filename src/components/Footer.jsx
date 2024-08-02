@@ -38,7 +38,7 @@ const Footer = () => {
       <div className="flex flex-col items-start justify-start gap-[16px]">
         <div className="relative font-medium">Follow us on</div>
         <div className="flex flex-row items-center justify-between gap-[20px]">
-          <img className="w-8 h-8 overflow-hidden" loading="lazy" alt="Facebook" src="/images/facebook.png" />
+          <img className="w-8 h-8 overflow-hidden" loading="lazy" alt="Facebook" src="/images/fb.png" />
           <img className="w-8 h-8 overflow-hidden" loading="lazy" alt="Instagram" src="/images/instagram.png" />
           <img className="w-8 h-8 overflow-hidden" loading="lazy" alt="Twitter" src="/images/twitter.png" />
         </div>

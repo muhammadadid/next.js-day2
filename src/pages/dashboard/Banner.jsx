@@ -83,7 +83,8 @@ const Banner = () => {
     }
   };
 
-  const handleUpload = async () => {
+  const handleUpload = async (e) => {
+    const file = e.target.files[0];
     const uploadData = new FormData();
     uploadData.append("image", file);
 
@@ -110,9 +111,7 @@ const Banner = () => {
     }
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  
 
   const onPageChange = (event) => {
     setFirst(event.first);
@@ -174,21 +173,14 @@ const Banner = () => {
                   className="object-cover w-full h-48 mb-4 rounded"
                 />
               )}
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} >
                 <div className="mb-4">
                   <label className="block text-gray-700">Choose Banner</label>
                   <input
                     type="file"
-                    onChange={handleFileChange}
+                    onChange={handleUpload}
                     className="w-full p-2 mt-2 border rounded"
                   />
-                  <button
-                    type="button"
-                    onClick={handleUpload}
-                    className="px-4 py-2 mt-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-                  >
-                    Upload
-                  </button>
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700">Banner Name</label>

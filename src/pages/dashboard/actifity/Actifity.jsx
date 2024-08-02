@@ -9,7 +9,6 @@ import SortDropdown from "@/components/SortDropdown";
 
 const Actifity = () => {
   const [actifity, setActifity] = useState([]);
-  const [activities, setActivities] = useState([]);
   const [filteredActivities, setFilteredActivities] = useState([]);
   const [categoryId, setCategoryId] = useState("");
   const [first, setFirst] = useState(0); // For pagination

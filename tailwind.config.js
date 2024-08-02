@@ -85,6 +85,9 @@ module.exports = {
       inherit: "inherit",
     },
     screens: {
+      mq1920 : {
+        raw: "screen and (max-width: 1920px)",
+      },
       mq1750 : {
         raw: "screen and (max-width: 1750px)",
       },
@@ -107,5 +110,7 @@ module.exports = {
   },
   corePlugins: {
     preflight: false,
-  },
-};
+  }, plugins: [
+    require('daisyui'),
+  ],
+}; 

@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { loginUser, fetchUserDetails } from "../Redux/slice/authSlice";
+import { loginUser } from "../Redux/slice/authSlice";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchUserDetails } from "../Redux/slice/userSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -155,7 +156,7 @@ const Login = () => {
                       className="flex items-center justify-center pt-3.5 pl-3"
                       loading="lazy"
                       alt=""
-                      src="/images/facebook.png"
+                      src="/images/fb.png"
                       width={26}
                       height={26}
                     ></Image>

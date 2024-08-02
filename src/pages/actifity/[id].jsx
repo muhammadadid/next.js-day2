@@ -1,9 +1,10 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import withAuth from "@/components/withAuth";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const actifityDetail = () => {
   const [actifity, setActifity] = useState([]);
@@ -17,14 +18,13 @@ const actifityDetail = () => {
   };
 
   const formatToIDR = (amount) => {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
-      minimumFractionDigits: 0
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
     }).format(amount);
   };
-  
-  
+
   const getActifity = async () => {
     if (!id) return;
     try {
@@ -51,9 +51,9 @@ const actifityDetail = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className="w-full h-full mq450:w-full">
       <Navbar />
-      <div className="h-auto max-w-4xl p-4 mx-auto mt-20 bg-white rounded-lg shadow-lg">
+      <div className="h-auto max-w-4xl p-4 mx-auto mt-20 bg-white rounded-lg shadow-lg mq450:w-full">
         <h1 className="mb-2 text-2xl font-bold text-blue-800">
           {actifity?.title}
         </h1>
@@ -71,20 +71,30 @@ const actifityDetail = () => {
             />
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-48 mb-10">
+        <div className="grid grid-cols-2 gap-48 mb-10 mq450:grid-cols-1">
           <div className="p-4 rounded-lg bg-[#03346E] w-[480px]">
             <h2 className="text-3xl font-bold text-white">Information</h2>
-            <p className="text-slate-300">Description : {actifity?.description}</p>
-            <p className="text-slate-300">Price Discount : {formatToIDR(actifity?.price_discount)}</p>
-            <p className="text-slate-300">Rating : {actifity?.rating}/5({actifity?.total_reviews})</p>
-            <p className="text-slate-300">Facilities : {actifity?.facilities}</p>
+            <p className="text-slate-300">
+              Description : {actifity?.description}
+            </p>
+            <p className="text-slate-300">
+              Price Discount : {formatToIDR(actifity?.price_discount)}
+            </p>
+            <p className="text-slate-300">
+              <i className="fas fa-star"></i> Rating : {actifity?.rating}/5 (
+              {actifity?.total_reviews})
+            </p>
+
+            <p className="text-slate-300">
+              Facilities : {actifity?.facilities}
+            </p>
           </div>
           <div className="p-4 rounded-lg h-28 bg-darkslateblue w-80">
-            <p className="text-lg text-slate-300">
-              Mulai dari
-            </p>
+            <p className="text-lg text-slate-300">Mulai dari</p>
             <div className="flex items-center justify-between ">
-              <p className="pt-0 text-xl font-bold text-white">{formatToIDR(actifity?.price)}</p>
+              <p className="pt-0 text-xl font-bold text-white">
+                {formatToIDR(actifity?.price)}
+              </p>
               <button className="px-4 py-2 rounded bg-greenyellow">
                 Cari Pilihan
               </button>
@@ -92,13 +102,13 @@ const actifityDetail = () => {
           </div>
         </div>
         <div className="items-center justify-center mb-4 ">
-          
           <h2 className="text-lg font-bold">Location Maps</h2>
-          <div dangerouslySetInnerHTML={{ __html: htmlContent }}>
-          </div>
+          <div dangerouslySetInnerHTML={{ __html: htmlContent }}></div>
         </div>
         <div className="pt-6 mb-40 ">
-          <h2 className="text-lg font-bold">Category : {actifity?.category?.name}</h2>
+          <h2 className="text-lg font-bold">
+            Category : {actifity?.category?.name}
+          </h2>
           <div className="flex items-start space-x-4">
             <img
               src={actifity?.category?.imageUrl}
@@ -106,7 +116,12 @@ const actifityDetail = () => {
               className="w-48 h-40 rounded"
             />
           </div>
-          <button className="px-4 py-2 mt-4 text-white bg-red-500 rounded" onClick={handleBack}>Back</button>
+          <button
+            className="px-4 py-2 mt-4 text-white bg-red-500 rounded"
+            onClick={handleBack}
+          >
+            Back
+          </button>
         </div>
       </div>
       <Footer />

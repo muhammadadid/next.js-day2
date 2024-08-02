@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchUserDetails } from '../../Redux/slice/authSlice'; // Adjust the path to where your authSlice is located
+import { fetchUserDetails } from '../../Redux/slice/userSlice'; // Adjust path if necessary
 
 const Bar = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
-  const token = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.user.user); // Adjust to match slice name
+  const token = useSelector((state) => state.auth.token); // Ensure this is correctly coming from the right slice
 
   useEffect(() => {
     if (token) {

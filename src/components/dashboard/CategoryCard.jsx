@@ -41,7 +41,8 @@ const CategoryCard = ({ item, getCategorys }) => {
     }
   };
 
-  const handleUpload = async () => {
+  const handleUpload = async (e) => {
+    const file = e.target.files[0]
     const uploadData = new FormData();
     uploadData.append("image", file);
 
@@ -108,11 +109,7 @@ const CategoryCard = ({ item, getCategorys }) => {
       toast.error("Failed to create category");
     }
   };
-
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -138,34 +135,60 @@ const CategoryCard = ({ item, getCategorys }) => {
         <div className="mb-2 text-xl font-bold">{item?.name}</div>
         <p className="flex items-center text-base text-gray-700">
           <span className="mr-2">
-            <i className="fas fa-calendar" aria-hidden="true"></i>
+            <i className="text-green-500 fas fa-calendar-plus" aria-hidden="true"></i>
           </span>
           Created At: {moment(item?.createdAt).format("DD MMM YYYY - HH:mm:ss")}
         </p>
         <p className="flex items-center text-base text-gray-700">
-          <span className="mr-2">
-            <i className="fas fa-calendar" aria-hidden="true"></i>
+          <span className="mr-2 text-blue-500">
+            <i className="fas fa-calendar-check" aria-hidden="true"></i>
           </span>
           Last Update:{" "}
           {moment(item?.updatedAt).format("DD MMM YYYY - HH:mm:ss")}
         </p>
       </div>
       {isModalOpen && (
-        <div className="fixed inset-0 z-10 flex items-center justify-center bg-gray-800 bg-opacity-50">
-          <div className="p-6 bg-white rounded-lg">
-            <p>Are you sure you want to delete category {item.name}?</p>
-            <div className="flex justify-end gap-4 mt-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-600 bg-opacity-50">
+          <div className="p-6 bg-white shadow-lg rounded-xl w-80">
+            <div className="flex justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                width="60"
+                height="60"
+                id="warning"
+              >
+                <path
+                  fill="#f48b78"
+                  d="M256,16C123.452,16,16,123.452,16,256s107.452,240,240,240s240-107.452,240-240S388.548,16,256,16z
+    M256,376.495c-7.732,0-14-6.268-14-14s6.268-14,14-14c7.732,0,14,6.268,14,14S263.732,376.495,256,376.495z M270,319.678
+    c0,7.732-6.268,14-14,14s-14-6.268-14-14V139.053c0-7.732,6.268-14,14-14s14,6.268,14,14V319.678z"
+                ></path>
+                <path
+                  fill="#dd5142"
+                  d="M256,125.053c-7.732,0-14,6.268-14,14v180.625c0,7.732,6.268,14,14,14s14-6.268,14-14V139.053
+    C270,131.321,263.732,125.053,256,125.053z"
+                ></path>
+                <circle cx="256" cy="362.496" r="14" fill="#dd5142"></circle>
+              </svg>
+            </div>
+
+            <p className="mt-4 text-lg text-center">
+              Delete <span className="font-bold">{item.name}</span> category?
+            </p>
+
+            <div className="flex justify-between mt-6">
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
+                className="px-4 py-2 text-gray-800 rounded hover:bg-red-400"
               >
-                Cancel
+                Keep it
               </button>
               <button
                 onClick={handleDelete}
-                className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                className="px-4 py-2 rounded bg-greenyellow hover:bg-yellowgreen-200"
               >
-                Delete
+                Yes, Delete
               </button>
             </div>
           </div>
@@ -175,7 +198,7 @@ const CategoryCard = ({ item, getCategorys }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
           <div className="w-full max-w-md bg-white rounded-lg shadow-lg">
             <div className="flex items-center justify-between p-4 border-b">
-              <h2 className="text-lg font-semibold">Edit category {item.name}</h2>
+              <h2 className="text-lg font-semibold text-center">Edit category {item.name}</h2>
               <button
                 onClick={() => setIsEditModalOpen(false)}
                 className="text-gray-500 hover:text-gray-700 focus:outline-none"
@@ -195,15 +218,9 @@ const CategoryCard = ({ item, getCategorys }) => {
               </label>
               <input
                 type="file"
-                onChange={handleFileChange}
+                onChange={handleUpload}
                 className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
               ></input>
-              <button
-                onClick={handleUpload}
-                className="px-4 py-2 font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none"
-              >
-                Upload
-              </button>
               <label className="block mt-4 mb-2 text-sm font-medium text-gray-700">
                 category Name
               </label>
