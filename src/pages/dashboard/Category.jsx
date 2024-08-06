@@ -97,15 +97,13 @@ const Category = () => {
         uploadData,
         config
       );
-      setImageUrl(res.data.url); 
+      setImageUrl(res.data.url);
       toast.success("Image uploaded successfully!");
     } catch (error) {
       toast.error("Failed to upload image!");
       console.log(error);
     }
   };
-
- 
 
   const filteredCategories = categories.filter(
     (category) =>
@@ -194,9 +192,8 @@ const Category = () => {
                     <input
                       type="file"
                       onChange={handleUpload}
-                      className="w-full p-2 mt-2 border rounded"
-                    />
-                    
+                      className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    ></input>
                   </div>
                   <div className="mb-4">
                     <label className="block text-gray-700">Category Name</label>
