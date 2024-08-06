@@ -88,7 +88,7 @@ const Login = () => {
                 type="email"
                 name="email"
                 placeholder="Email address"
-                value={email}
+               
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -101,7 +101,7 @@ const Login = () => {
                     type={showPassword ? "text" : "password"}
                     name="password"
                     placeholder="Password"
-                    value={password}
+                    
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
