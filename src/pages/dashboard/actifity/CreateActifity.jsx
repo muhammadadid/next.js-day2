@@ -645,8 +645,9 @@ const CreateActivity = () => {
                         type="text"
                         id="title"
                         name="title"
+                        value={formData.title}
                         onChange={handleOnChange}
-                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-xl"
                       />
                     </div>
                     <div>
@@ -656,8 +657,9 @@ const CreateActivity = () => {
                       <select
                         id="categoryId"
                         name="categoryId"
+                        value={formData.categoryId}
                         onChange={handleOnChange}
-                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-xl"
                       >
                         <option value="">Select</option>
                         {categories.map((category) => (
@@ -678,8 +680,9 @@ const CreateActivity = () => {
                       <textarea
                         id="description"
                         name="description"
+                        value={formData.description}
                         onChange={handleOnChange}
-                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-xl"
                       ></textarea>
                     </div>
                     <div>
@@ -690,8 +693,9 @@ const CreateActivity = () => {
                         type="number"
                         id="price"
                         name="price"
+                        value={formData.price}
                         onChange={handleOnChange}
-                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-xl"
                       />
                     </div>
                     <div>
@@ -702,16 +706,18 @@ const CreateActivity = () => {
                         type="number"
                         id="price_discount"
                         name="price_discount"
+                        value={formData.price_discount}
                         onChange={handleOnChange}
-                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-xl"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700">
+                      <label className="block pb-2 text-sm font-medium text-gray-700">
                         Rating
                       </label>
                       <Rating
                         value={formData.rating}
+                        
                         onChange={(e) =>
                           setFormData({ ...formData, rating: e.value })
                         }
@@ -725,9 +731,10 @@ const CreateActivity = () => {
                       <input
                         type="number"
                         id="total_reviews"
+                        value={formData.total_reviews}
                         name="total_reviews"
                         onChange={handleOnChange}
-                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-xl"
                       />
                     </div>
                     <div>
@@ -738,8 +745,9 @@ const CreateActivity = () => {
                         type="text"
                         id="facilities"
                         name="facilities"
+                        value={formData.facilities}
                         onChange={handleOnChange}
-                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-xl"
                       />
                     </div>
                   </div>
@@ -754,8 +762,9 @@ const CreateActivity = () => {
                         type="text"
                         id="address"
                         name="address"
+                        value={formData.address}
                         onChange={handleOnChange}
-                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-xl"
                       />
                     </div>
                     <div>
@@ -766,8 +775,9 @@ const CreateActivity = () => {
                         type="text"
                         id="province"
                         name="province"
+                        value={formData.province}
                         onChange={handleOnChange}
-                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-xl"
                       />
                     </div>
                     <div>
@@ -778,8 +788,9 @@ const CreateActivity = () => {
                         type="text"
                         id="city"
                         name="city"
+                        value={formData.city}
                         onChange={handleOnChange}
-                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-xl"
                       />
                     </div>
                     <div>
@@ -790,8 +801,9 @@ const CreateActivity = () => {
                         type="text"
                         id="location_maps"
                         name="location_maps"
+                        value={formData.location_maps}
                         onChange={handleOnChange}
-                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-xl"
                       />
                     </div>
                   </div>
@@ -816,6 +828,7 @@ const CreateActivity = () => {
                     type="file"
                     id="imageUrls"
                     name="imageUrls"
+                    value={formData.imageUrls}
                     onChange={handleUpload}
                     className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                   ></input>
@@ -826,7 +839,7 @@ const CreateActivity = () => {
                     <button
                       type="button"
                       onClick={prevStep}
-                      className="px-4 py-2 text-white bg-gray-600 rounded-md"
+                      className="px-4 py-2 text-white bg-gray-600 rounded-xl"
                     >
                       Previous
                     </button>
@@ -835,7 +848,7 @@ const CreateActivity = () => {
                     <button
                       type="button"
                       onClick={goToNextStep}
-                      className="px-4 py-2 text-white bg-blue-600 rounded-md"
+                      className="px-4 py-2 text-white bg-blue-600 rounded-xl"
                     >
                       Next
                     </button>

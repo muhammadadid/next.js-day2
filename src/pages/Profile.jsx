@@ -110,7 +110,7 @@ const Profile = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col items-center max-w-lg p-6 mx-auto mb-40 shadow-lg bg-khaki-400 rounded-3xl mt-28">
+      <div className="flex flex-col items-center max-w-lg p-6 mx-auto mb-40 shadow-lg bg-lightyellow rounded-3xl mt-28">
         <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
           <div className="flex items-center justify-center space-x-4">
             <img

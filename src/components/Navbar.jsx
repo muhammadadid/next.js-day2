@@ -268,7 +268,7 @@ const Navbar = () => {
                 width={20}
                 height={20}
               />
-              <span className="text-sm">{user?.name}</span>
+              <span className="text-lg">{user?.name}</span>
             </p>
             {showDropdown && (
               <div className="absolute right-0 mt-2 bg-white rounded-lg shadow-lg">

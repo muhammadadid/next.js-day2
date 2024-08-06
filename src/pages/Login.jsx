@@ -6,13 +6,14 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserDetails } from "../Redux/slice/userSlice";
 
-const Login = () => {
+const Login = () => { 
   const dispatch = useDispatch();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { status, token } = useSelector((state) => state.auth);
   const [showPassword, setShowPassword] = useState(false);
+
 
   useEffect(() => {
     if (token) {

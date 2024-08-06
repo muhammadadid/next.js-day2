@@ -32,7 +32,7 @@ const FormPromo = ({ promo }) => {
         <div className="w-[389.3px] flex flex-row items-center justify-between max-w-full gap-[20px] text-xl mq450:flex-wrap">
           <div className="flex flex-row items-center justify-start gap-[7px]">
             <div className="relative inline-block min-w-[49px] mq450:text-base text-white">
-            Savings
+            Sale
             </div>
             <div className="relative text-9xl text-yellowgreen-100 inline-block min-w-[105px] whitespace-nowrap mq800:text-13xl mq450:text-5xl ">
               {formatToIDR(promo?.promo_discount_price)}
