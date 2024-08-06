@@ -108,6 +108,7 @@ const Navbar = () => {
               aria-expanded={showDropdown ? "true" : "false"}
               aria-haspopup="true"
             >
+              <span className="text-lg">{user?.name}</span>
               <img
                 className="w-10 h-10 rounded-full"
                 src={user?.profilePictureUrl}
@@ -115,7 +116,6 @@ const Navbar = () => {
                 width={20}
                 height={20}
               />
-              <span className="text-lg">{user?.name}</span>
             </p>
             {showDropdown && (
               <div className="absolute right-0 mt-2 bg-white rounded-lg shadow-lg">
