@@ -119,7 +119,7 @@ const Profile = () => {
               className="w-40 h-40 rounded-full"
             />
             <div>
-              <h2 className="text-xl font-semibold">{user.name}</h2>
+              <h2 className="text-xl font-semibold text-black">{user.name}</h2>
             </div>
           </div>
           <div className="flex items-center justify-center mr-4">
@@ -130,7 +130,7 @@ const Profile = () => {
             </button>
           </div>
         </div>
-        <form className="grid w-full gap-4 mt-6 md:grid-cols-1">
+        <form className="grid w-full gap-4 mt-6 text-black md:grid-cols-1">
           <div>
             <label htmlFor="name" className="block text-gray-700">
               Name
@@ -140,7 +140,7 @@ const Profile = () => {
               id="name"
               name="name"
               value={user.name}
-              className="block px-4 py-2 mt-1 border rounded-md shadow-sm w-60 md:w-60 focus:ring focus:ring-opacity-50"
+              className="block px-4 py-2 mt-1 text-black border rounded-md shadow-sm w-60 md:w-60 focus:ring focus:ring-opacity-50"
               disabled
             />
           </div>
@@ -153,7 +153,7 @@ const Profile = () => {
               id="phoneNumber"
               name="phoneNumber"
               value={user.phoneNumber}
-              className="block px-4 py-2 mt-1 border rounded-md shadow-sm w-60 md:w-60 focus:ring focus:ring-opacity-50"
+              className="block px-4 py-2 mt-1 text-black border rounded-md shadow-sm w-60 md:w-60 focus:ring focus:ring-opacity-50"
               disabled
             />
           </div>
@@ -166,13 +166,13 @@ const Profile = () => {
               id="role"
               name="role"
               value={user.role}
-              className="block px-4 py-2 mt-1 border rounded-md shadow-sm w-60 md:w-60 focus:ring focus:ring-opacity-50"
+              className="block px-4 py-2 mt-1 text-black border rounded-md shadow-sm w-60 md:w-60 focus:ring focus:ring-opacity-50"
               disabled
             />
           </div>
         </form>
         <div className="w-full mt-6">
-          <h3 className="text-lg font-medium">My email Address</h3>
+          <h3 className="text-lg font-medium text-black">My email Address</h3>
           <div className="flex items-center mt-2 space-x-2">
             <div className="p-2 rounded-full bg-whitesmoke">
               <svg

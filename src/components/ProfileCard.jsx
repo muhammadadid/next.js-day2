@@ -63,7 +63,7 @@ const ProfileCard = ({ user, getUser }) => {
           </div>
         </div>
         <div className="p-4">
-          <h2 className="font-semibold text-lgi ">{user?.name}</h2>
+          <h2 className="font-semibold text-black text-lgi">{user?.name}</h2>
           <p className="text-sm text-gray-600">
             <span className="flex items-center text-slate-800">
               <svg

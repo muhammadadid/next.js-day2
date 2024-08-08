@@ -84,7 +84,7 @@ const Login = () => {
                 Enter your email address
               </div>
               <input
-                className="[outline:none] bg-white self-stretch h-[57px] relative rounded-4xs box-border min-w-[250px] shrink-0 border-[1px] border-solid "
+                className="[outline:none] bg-white self-stretch h-[57px] relative rounded-4xs box-border min-w-[250px] shrink-0 border-[1px] border-solid text-black "
                 type="email"
                 name="email"
                 placeholder="Email address"
@@ -97,7 +97,7 @@ const Login = () => {
                 <div className="absolute top-[0px] left-[0px] w-full h-full flex flex-col items-start justify-start pt-[54px] px-0 pb-[19px] box-border gap-[32px] max-w-full z-[1] mq450:gap-[16px]">
                   <div className="mt-[-56px] relative">Enter your Password</div>
                   <input
-                    className="[outline:none] bg-white w-full h-[57px] absolute !m-[0] right-[0px] bottom-[0px] left-[0px] rounded-4xs box-border border-[1px] border-solid border-darkgray-100"
+                    className="[outline:none] bg-white w-full h-[57px] text-black absolute !m-[0] right-[0px] bottom-[0px] left-[0px] rounded-4xs box-border border-[1px] border-solid border-darkgray-100"
                     type={showPassword ? "text" : "password"}
                     name="password"
                     placeholder="Password"

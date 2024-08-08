@@ -142,7 +142,7 @@ const Register = () => {
                 Enter your email address
               </div>
               <input
-                className="[outline:none] bg-white self-stretch h-[57px] relative rounded-4xs box-border min-w-[250px] shrink-0 border-[1px] border-solid"
+                className="[outline:none] text-black bg-white self-stretch h-[57px] relative rounded-4xs box-border min-w-[250px] shrink-0 border-[1px] border-solid"
                 type="email"
                 placeholder="Enter your email address"
                 name="email"
@@ -156,7 +156,7 @@ const Register = () => {
                     User name
                   </div>
                   <input
-                    className="[outline:none] bg-white w-[216px] h-[57px] absolute !m-[0] right-[-49px] bottom-[0.1px] rounded-4xs box-border border-[1px] border-solid border-darkgray"
+                    className="[outline:none] text-black bg-white w-[216px] h-[57px] absolute !m-[0] right-[-49px] bottom-[0.1px] rounded-4xs box-border border-[1px] border-solid border-darkgray"
                     type="text"
                     placeholder="Enter your user name"
                     name="name"
@@ -168,7 +168,7 @@ const Register = () => {
                     Contact Number
                   </div>
                   <input
-                    className="[outline:none] bg-white w-[216px] h-[57px] absolute !m-[0] right-[-49px] bottom-[0.1px] rounded-4xs box-border border-[1px] border-solid border-darkgray"
+                    className="[outline:none] text-black bg-white w-[216px] h-[57px] absolute !m-[0] right-[-49px] bottom-[0.1px] rounded-4xs box-border border-[1px] border-solid border-darkgray"
                     type="tel"
                     name="phoneNumber"
                     onChange={handleChange}
@@ -182,7 +182,7 @@ const Register = () => {
                 Enter your Password
               </div>
               <input
-                className="[outline:none] bg-white self-stretch h-[57px] relative rounded-4xs box-border min-w-[250px] shrink-0 border-[1px] border-solid"
+                className="[outline:none] text-black bg-white self-stretch h-[57px] relative rounded-4xs box-border min-w-[250px] shrink-0 border-[1px] border-solid"
                 type="password"
                 name="password"
                 onChange={handleChange}
@@ -194,7 +194,7 @@ const Register = () => {
                 Repeat Password
               </div>
               <input
-                className="[outline:none] bg-white self-stretch h-[57px] relative rounded-4xs box-border min-w-[250px] shrink-0 border-[1px] border-solid border-darkgray"
+                className="[outline:none] text-black bg-white self-stretch h-[57px] relative rounded-4xs box-border min-w-[250px] shrink-0 border-[1px] border-solid border-darkgray"
                 type="password"
                 name="passwordRepeat"
                 onChange={handleChange}
